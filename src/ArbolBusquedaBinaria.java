@@ -7,6 +7,8 @@ public class ArbolBusquedaBinaria {
 		TreeNode(int data) {
 			this.data = data;
 		}
+
+
 	}
 	
 	// Método que obtiene el menor elemento
@@ -100,13 +102,20 @@ public class ArbolBusquedaBinaria {
 		// Acá se crea un árbol de búsqueda binaria
 		TreeNode rootNode = createBinarySearchTree();
  
-		System.out.println("Árbol Binario");
+		System.out.println("Árbol Binario en recorrido In-Orden");
 		inOrder(rootNode);
 		System.out.println();
 		int NodoaEliminar = 40;
 		TreeNode rootNodeRes = eliminar(rootNode, NodoaEliminar);
 		System.out.println("Árbol sin el elemento " + NodoaEliminar + " eliminado");
 		inOrder(rootNodeRes);
+		System.out.println();
+		System.out.println("Recorrido Pre-Orden" );
+		preOrder(rootNodeRes);
+		System.out.println();
+		System.out.println("Recorrido Post-Orden" );
+		postOrder(rootNodeRes);
+		
 		
 
 	}
@@ -116,24 +125,13 @@ public class ArbolBusquedaBinaria {
 		TreeNode node20 = new TreeNode(20);
 		TreeNode node10 = new TreeNode(10);
 		TreeNode node30 = new TreeNode(30);
-		TreeNode node60 = new TreeNode(60);
-		TreeNode node50 = new TreeNode(50);
-		TreeNode node70 = new TreeNode(70);
-		TreeNode node5 = new TreeNode(5);
-		TreeNode node13 = new TreeNode(13);
-		TreeNode node55 = new TreeNode(55);
+
  
 		insert(null, rootNode);
 		insert(rootNode, node20);
 		insert(rootNode, node10);
 		insert(rootNode, node30);
-		insert(rootNode, node60);
-		insert(rootNode, node50);
-		insert(rootNode, node70);
-		insert(rootNode, node5);
-		insert(rootNode, node13);
-		insert(rootNode, node55);
-		insert(rootNode, node13);
+
 		return rootNode;
 	}
 }
