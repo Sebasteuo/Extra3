@@ -1,16 +1,28 @@
 public class ArbolBusquedaBinaria {
-	public static class TreeNode {
-		int data;
-		TreeNode left;
-		TreeNode right;
+	
+	
+	public static void main(String[] args) {
+		 
+		// Acá se crea un árbol de búsqueda binaria
+		TreeNode rootNode = CrearArbolBinario();
  
-		TreeNode(int data) {
-			this.data = data;
-		}
-
+		System.out.println("Árbol Binario en recorrido In-Orden");
+		inOrder(rootNode);
+		System.out.println();
+		int NodoaEliminar = 40;
+		TreeNode rootNodeRes = eliminar(rootNode, NodoaEliminar);
+		System.out.println("Árbol sin el elemento " + NodoaEliminar + " eliminado");
+		inOrder(rootNodeRes);
+		System.out.println();
+		System.out.println("Recorrido Pre-Orden" );
+		preOrder(rootNodeRes);
+		System.out.println();
+		System.out.println("Recorrido Post-Orden" );
+		postOrder(rootNodeRes);
+		
+		
 
 	}
-	
 	// Método que obtiene el menor elemento
 	public static TreeNode elementoMenor(TreeNode root) {
 		if (root.left == null)
@@ -97,28 +109,7 @@ public class ArbolBusquedaBinaria {
 		}
 	}
  
-	public static void main(String[] args) {
- 
-		// Acá se crea un árbol de búsqueda binaria
-		TreeNode rootNode = CrearArbolBinario();
- 
-		System.out.println("Árbol Binario en recorrido In-Orden");
-		inOrder(rootNode);
-		System.out.println();
-		int NodoaEliminar = 40;
-		TreeNode rootNodeRes = eliminar(rootNode, NodoaEliminar);
-		System.out.println("Árbol sin el elemento " + NodoaEliminar + " eliminado");
-		inOrder(rootNodeRes);
-		System.out.println();
-		System.out.println("Recorrido Pre-Orden" );
-		preOrder(rootNodeRes);
-		System.out.println();
-		System.out.println("Recorrido Post-Orden" );
-		postOrder(rootNodeRes);
-		
-		
 
-	}
  
 	public static TreeNode CrearArbolBinario() {
 		TreeNode rootNode = new TreeNode(40);
