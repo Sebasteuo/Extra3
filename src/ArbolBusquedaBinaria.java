@@ -1,5 +1,5 @@
 /**
- * Esta clase contiene los metodos necesarios para la creacion del abol binario de busqueda, así como los recorridos, diferencia, etc.
+ * Esta clase contiene los metodos necesarios para la creacion del arbol binario de busqueda, así como los recorridos, diferencia, etc.
  * @author Sebastian Alba 
  * @author Randal Mendez
  * @author David Pereira
