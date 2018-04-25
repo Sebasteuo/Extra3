@@ -40,7 +40,8 @@ public class ArbolBusquedaBinaria {
 			root.right = eliminar(root.right, value);
 
 		} else {
-			// Verifica Si el nodo a eliminar tiene ambos hijos
+			// Verifica Si el nodo a eliminar tiene ambos hijos, se conecta el padre de nodo al nodo más 
+			// a la izquierda (mínimo) del subárbol derecho o al nodo derecha (máximo) del subárbol izquierdo.
 			if (root.left != null && root.right != null) {
 				TreeNode temp = root;
 				// Busca el elemento menor de la derecha
@@ -51,15 +52,17 @@ public class ArbolBusquedaBinaria {
 				eliminar(root.right, minNodeForRight.data);
 
 			}
-			// verifica Si el nodo a ser borrado tiene solo un hijo izquierdo
+			// verifica Si el nodo a ser borrado tiene solo un hijo izquierdo. Se conecta el 
+			//padre del nodo eliminado directamente al elemento secundario del nodo eliminado.
 			else if (root.left != null) {
 				root = root.left;
 			}
 			// Verifica si el nodo a ser borrado tiene solo un hijo a la derecha
+			//Se conecta el padre del nodo eliminado directamente al elemento secundario del nodo eliminado.
 			else if (root.right != null) {
 				root = root.right;
 			}
-			// Verifica si el nodo a ser borrado no tiene hijos
+			// Verifica si el nodo a ser borrado no tiene hijos, solo se busca el nodo y se hace nulo.
 			else
 				root = null;
 		}
