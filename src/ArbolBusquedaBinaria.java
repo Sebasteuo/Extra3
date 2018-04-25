@@ -1,28 +1,29 @@
 public class ArbolBusquedaBinaria {
 
 	public static void main(String[] args) {
-		 
-		// Acá se crea un árbol de búsqueda binaria
+
+		// Aca se crea un Arbol de busqueda binaria
 		TreeNode rootNode = CrearArbolBinario();
- 
-		System.out.println("Árbol Binario en recorrido In-Orden");
+
+		System.out.println("Arbol Binario en recorrido In-Orden");
 		inOrder(rootNode);
 		System.out.println();
 		int NodoaEliminar = 40;
 		TreeNode rootNodeRes = eliminar(rootNode, NodoaEliminar);
-		System.out.println("Árbol sin el elemento " + NodoaEliminar + " eliminado");
+		System.out.println("Arbol sin el elemento " + NodoaEliminar + " eliminado");
 		inOrder(rootNodeRes);
 		System.out.println();
-		System.out.println("Recorrido Pre-Orden" );
+		System.out.println("Recorrido Pre-Orden");
 		preOrder(rootNodeRes);
 		System.out.println();
-		System.out.println("Recorrido Post-Orden" );
+		System.out.println("Recorrido Post-Orden");
 		postOrder(rootNodeRes);
-		
-		
+		System.out.println();
+		calcularDiferencia(rootNode);
 
 	}
-	// Método que obtiene el menor elemento
+
+	// Metodo que obtiene el menor elemento
 	public static TreeNode elementoMenor(TreeNode root) {
 		if (root.left == null)
 			return root;
@@ -47,7 +48,7 @@ public class ArbolBusquedaBinaria {
 				TreeNode minNodeForRight = elementoMenor(temp.right);
 				// Remplaza el nodo current con el nodo menor del sub-arbol derecho
 				root.data = minNodeForRight.data;
-				// Borra el nodo menor del subárbol derecho
+				// Borra el nodo menor del sub-arbol derecho
 				eliminar(root.right, minNodeForRight.data);
 
 			}
@@ -110,7 +111,6 @@ public class ArbolBusquedaBinaria {
 		}
 	}
 
-
 	public static TreeNode CrearArbolBinario() {
 		TreeNode rootNode = new TreeNode(40);
 		TreeNode node20 = new TreeNode(20);
@@ -125,5 +125,18 @@ public class ArbolBusquedaBinaria {
 		return rootNode;
 	}
 
+	public static void calcularDiferencia(TreeNode arbol) {
+		TreeNode auxMax = arbol;
+		TreeNode auxMin = arbol;
+		int diferencia = 0;
+		while (auxMax.right != null) {
+			auxMax = auxMax.right;
+		}
+		while (auxMin.left != null) {
+			auxMin = auxMin.left;
+		}
+		diferencia = auxMax.data - auxMin.data;
+		System.out.println("La diferencia entre el nodo Mayor y el menos es de: " + diferencia);
+	}
 
 }
