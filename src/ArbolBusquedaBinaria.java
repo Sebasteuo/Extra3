@@ -55,22 +55,22 @@ public class ArbolBusquedaBinaria {
 		return root;
 	}
  
-	public static TreeNode insert(TreeNode root, TreeNode nodeToBeInserted) {
+	public static TreeNode Insertar(TreeNode root, TreeNode nodoaInsertar) {
 		if (root == null) {
-			root = nodeToBeInserted;
+			root = nodoaInsertar;
 			return root;
 		}
  
-		if (root.data > nodeToBeInserted.data) {
+		if (root.data > nodoaInsertar.data) {
 			if (root.left == null)
-				root.left = nodeToBeInserted;
+				root.left = nodoaInsertar;
 			else
-				insert(root.left, nodeToBeInserted);
-		} else if (root.data < nodeToBeInserted.data)
+				Insertar(root.left, nodoaInsertar);
+		} else if (root.data < nodoaInsertar.data)
 			if (root.right == null)
-				root.right = nodeToBeInserted;
+				root.right = nodoaInsertar;
 			else
-				insert(root.right, nodeToBeInserted);
+				Insertar(root.right, nodoaInsertar);
 		return root;
 	}
  
@@ -100,7 +100,7 @@ public class ArbolBusquedaBinaria {
 	public static void main(String[] args) {
  
 		// Acá se crea un árbol de búsqueda binaria
-		TreeNode rootNode = createBinarySearchTree();
+		TreeNode rootNode = CrearArbolBinario();
  
 		System.out.println("Árbol Binario en recorrido In-Orden");
 		inOrder(rootNode);
@@ -120,17 +120,17 @@ public class ArbolBusquedaBinaria {
 
 	}
  
-	public static TreeNode createBinarySearchTree() {
+	public static TreeNode CrearArbolBinario() {
 		TreeNode rootNode = new TreeNode(40);
 		TreeNode node20 = new TreeNode(20);
 		TreeNode node10 = new TreeNode(10);
 		TreeNode node30 = new TreeNode(30);
 
  
-		insert(null, rootNode);
-		insert(rootNode, node20);
-		insert(rootNode, node10);
-		insert(rootNode, node30);
+		Insertar(null, rootNode);
+		Insertar(rootNode, node20);
+		Insertar(rootNode, node10);
+		Insertar(rootNode, node30);
 
 		return rootNode;
 	}
