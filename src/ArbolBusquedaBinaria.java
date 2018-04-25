@@ -33,7 +33,27 @@ public class ArbolBusquedaBinaria {
 		postOrder(rootNodeRes);
 		System.out.println();
 		calcularDiferencia(rootNode);
-
+                
+                Nodos rootNode2 = CrearArbolBinario2();
+                System.out.println("Arbol Binario en recorrido In-Orden:");
+		inOrder(rootNode2);
+		System.out.println();
+                System.out.println("Arbol Binario 2 en recorrido Pre-Orden:");
+		preOrder(rootNode2);
+		System.out.println();
+		System.out.println("Arbol Binario 2 en recorrido Post-Orden:");
+		postOrder(rootNode2);
+                System.out.println("");
+                
+                Nodos newTree = unirArboles(rootNode, rootNode2);
+                System.out.println("Arbol Nuevo en recorrido In-Orden:");
+		inOrder(newTree);
+                System.out.println("");
+                System.out.println("Arbol nuevo en recorrido Pre-Orden:");
+		preOrder(newTree);
+		System.out.println();
+		System.out.println("Arbol nuevo en recorrido Post-Orden:");
+		postOrder(newTree);
 	}
 	/**
 	 * Este metodo obtiene el elemento menor
@@ -159,13 +179,30 @@ public class ArbolBusquedaBinaria {
 		Nodos node10 = new Nodos(10);
 		Nodos node30 = new Nodos(30);
 		
-		
-		
 		Insertar(null, rootNode);
 		Insertar(rootNode, node20);
 		Insertar(rootNode, node10);
 		Insertar(rootNode, node30);
 		Insertar(rootNode, node30);
+
+		return rootNode;
+	}
+        
+        /**
+	 * EN este metodo se crea el arbol binario, agregando los nodos que se quiere tener.
+	 * @return
+	 */
+        public static Nodos CrearArbolBinario2() {
+		Nodos rootNode = new Nodos(45);
+		Nodos node25 = new Nodos(35);
+		Nodos node15 = new Nodos(15);
+		Nodos node35 = new Nodos(55);
+		
+		Insertar(null, rootNode);
+		Insertar(rootNode, node25);
+		Insertar(rootNode, node15);
+		Insertar(rootNode, node35);
+		Insertar(rootNode, node35);
 
 		return rootNode;
 	}
@@ -186,5 +223,98 @@ public class ArbolBusquedaBinaria {
 		diferencia = auxMax.data - auxMin.data;
 		System.out.println("La diferencia entre el nodo Mayor y el menos es de: " + diferencia);
 	}
+        
+        /**
+         * Metodo encargado de unir dos arboles binarios de busqueda, en un nuevo arbol binario
+         * de busqueda.
+         * @param nodo1 : Arbol 1
+         * @param nodo2 : Arbol 2
+         * @return Nodos nodo: Arbol 3 resultante de la union.
+         */
+        public static Nodos unirArboles(Nodos nodo1, Nodos nodo2){
+            ListaEnlazadaSimple lista1 = almacenarNodos(nodo1, new ListaEnlazadaSimple());
+            
+            ListaEnlazadaSimple lista2 = almacenarNodos(nodo2, new ListaEnlazadaSimple());
+            
+            ListaEnlazadaSimple lista3 = unir (lista1, lista2, lista1.getSize(), lista2.getSize());
+            
+            Nodos nodo = LLtoBST(lista3, 1, lista3.getSize());
 
+            return nodo;
+        }
+        /**
+         * Metodo encargado de unir dos listas enlazadas simples en una nueva lista enlazada simple.
+         * @param lista1
+         * @param lista2
+         * @param m : Tamanho de la lista 1
+         * @param n : Tamanho de la lista 2
+         * @return ListaEnlazadaSimple lista 3 : Nueva lista resultando de la union
+         */
+        public static ListaEnlazadaSimple unir(ListaEnlazadaSimple lista1, ListaEnlazadaSimple lista2, int m, int n){
+            ListaEnlazadaSimple lista3 = new ListaEnlazadaSimple();
+            int i = 1;
+            int j =1;
+
+            while(i<=m && j<=n){
+                if(lista1.getData(i) < lista2.getData(j)){
+                    lista3.insertEnd(lista1.getData(i));
+                    i++;
+                }else{
+                    lista3.insertEnd(lista2.getData(j));
+                    j++;
+                }
+            }
+
+            while(i<=m){
+                lista3.insertEnd(lista1.getData(i));
+                i++;
+            }
+
+            while(j<=n){
+                lista3.insertEnd(lista2.getData(j));
+                j++;
+            }
+
+            return lista3;
+        }
+        
+        /**
+         * Metodo encargado de convertir la lista enlzada simple en un arbol binario de
+         * busqueda.
+         * @param lista : lista a convertir
+         * @param comienzo : indicador de de donde comienza la lista
+         * @param finale : indicador de donde termina la lista
+         * @return Nodos nodo : Nuevo arbol binario de busqueda resultante de la union
+         */
+        public static Nodos LLtoBST(ListaEnlazadaSimple lista, int comienzo, int finale){
+            if(comienzo > finale){
+                return null;
+            }
+            int mitad = (comienzo + finale)/2;
+            Nodos nodo = new Nodos(lista.getData(mitad));
+
+            nodo.left = LLtoBST(lista, comienzo, mitad-1);
+            nodo.right = LLtoBST(lista, mitad+1, finale);
+
+            return nodo;
+        }
+        /**
+         * Metodo encargado de almacenar los nodos de un arbol binario de busqueda en
+         * una lista enlazada simple, este metodo los almacena de manaera ordenada.
+         * @param arbol : Arbol de donde se extraen los nodos
+         * @param lista : Lista donde se almacenaran los nodos
+         * @return ListaEnlazadaSimple lisa : Lista con los nodos del arbol almacenados en 
+         * forma ordenada.
+         */
+        public static ListaEnlazadaSimple almacenarNodos(Nodos arbol, ListaEnlazadaSimple lista){
+            if(arbol == null){
+                return null;
+            }
+            
+            almacenarNodos(arbol.left, lista);
+            lista.insertEnd(arbol.data);
+            almacenarNodos(arbol.right, lista);
+            
+            return lista;
+        }
 }
