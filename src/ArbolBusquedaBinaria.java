@@ -79,6 +79,21 @@ public class ArbolBusquedaBinaria {
 		System.out.print(root.data + " ");
 		inOrder(root.right);
 	}
+	public static void preOrder(TreeNode root) {
+		if( root != null) {
+			System.out.print(root.data + " ");
+			inOrder(root.left);
+			inOrder(root.right);
+		}
+		
+	}
+	public static void postOrder(TreeNode root) {
+		if (root != null) {
+			inOrder(root.left);
+			inOrder(root.right);
+			System.out.print(root.data + " ");
+		}
+	}
  
 	public static void main(String[] args) {
  
@@ -92,6 +107,7 @@ public class ArbolBusquedaBinaria {
 		TreeNode rootNodeRes = eliminar(rootNode, NodoaEliminar);
 		System.out.println("Árbol sin el elemento " + NodoaEliminar + " eliminado");
 		inOrder(rootNodeRes);
+		
 
 	}
  
