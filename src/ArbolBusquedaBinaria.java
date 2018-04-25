@@ -1,4 +1,17 @@
+/**
+ * Esta clase contiene los metodos necesarios para la creacion del abol binario de busqueda, así como los recorridos, diferencia, etc.
+ * @author Sebastian Alba 
+ * @author Randal Mendez
+ * @author David Pereira
+ *
+ */
 public class ArbolBusquedaBinaria {
+	
+	/**
+	 *  Método Main se crea una instancia de un árbol binario. Donde se obtiene el recorrido Inorden,preorden,postorden, con el
+	 *  elemento eliminado y la diferencia.
+	 * @param args
+	 */
 
 	public static void main(String[] args) {
 
@@ -22,7 +35,11 @@ public class ArbolBusquedaBinaria {
 		calcularDiferencia(rootNode);
 
 	}
-
+	/**
+	 * Este metodo obtiene el elemento menor
+	 * @param root
+	 * @return
+	 */
 	// Metodo que obtiene el menor elemento
 	public static TreeNode elementoMenor(TreeNode root) {
 		if (root.left == null)
@@ -31,7 +48,12 @@ public class ArbolBusquedaBinaria {
 			return elementoMenor(root.left);
 		}
 	}
-
+	/**
+	 * Este metodo se encarga de eliminar el nodo en el arbol, validando si existe, si es la raiz, si es mayor o menor a la raiz.
+	 * @param root
+	 * @param value
+	 * @return
+	 */
 	public static TreeNode eliminar(TreeNode root, int value) {
 		if (root == null)
 			return null;
@@ -69,7 +91,12 @@ public class ArbolBusquedaBinaria {
 		}
 		return root;
 	}
-
+	/**
+	 * Este metodo se encarga de insertar, valida que no haya repetidos. Ademas verifica si debe irse por el subarbol izq o der.
+	 * @param root
+	 * @param nodoaInsertar
+	 * @return
+	 */
 	public static TreeNode Insertar(TreeNode root, TreeNode nodoaInsertar) {
 		if (root == null) {
 			root = nodoaInsertar;
@@ -88,7 +115,10 @@ public class ArbolBusquedaBinaria {
 				Insertar(root.right, nodoaInsertar);
 		return root;
 	}
-
+	/**
+	 * Este metodo recorre el arbol en Inorden, es decir primero el subarbol izquierdo, luego la raiz y por ultimo el subarbol derecho.
+	 * @param root
+	 */
 	public static void inOrder(TreeNode root) {
 		if (root == null)
 			return;
@@ -96,7 +126,10 @@ public class ArbolBusquedaBinaria {
 		System.out.print(root.data + " ");
 		inOrder(root.right);
 	}
-
+	/**
+	 * Este metodo recorre el arbol en preOrden, es decir primero la raiz, luego el subarbol izquierdo y por ultimo el subarbol derecho
+	 * @param root
+	 */
 	public static void preOrder(TreeNode root) {
 		if (root != null) {
 			System.out.print(root.data + " ");
@@ -105,7 +138,10 @@ public class ArbolBusquedaBinaria {
 		}
 
 	}
-
+	/**
+	 * Este metodo recorre el arbol en PostOrden, es decir primero el subarbol izquierdo, luego el subarbol derecho y por ultimo la raiz
+	 * @param root
+	 */
 	public static void postOrder(TreeNode root) {
 		if (root != null) {
 			inOrder(root.left);
@@ -113,21 +149,30 @@ public class ArbolBusquedaBinaria {
 			System.out.print(root.data + " ");
 		}
 	}
-
+	/**
+	 * EN este metodo se crea el arbol binario, agregando los nodos que se quiere tener.
+	 * @return
+	 */
 	public static TreeNode CrearArbolBinario() {
 		TreeNode rootNode = new TreeNode(40);
 		TreeNode node20 = new TreeNode(20);
 		TreeNode node10 = new TreeNode(10);
 		TreeNode node30 = new TreeNode(30);
-
+		
+		
+		
 		Insertar(null, rootNode);
 		Insertar(rootNode, node20);
 		Insertar(rootNode, node10);
 		Insertar(rootNode, node30);
+		Insertar(rootNode, node30);
 
 		return rootNode;
 	}
-
+	/**
+	 * Este metodo se encarga de calcular la diferencia del nodo Mayor menos el nodo Menor.
+	 * @param arbol
+	 */
 	public static void calcularDiferencia(TreeNode arbol) {
 		TreeNode auxMax = arbol;
 		TreeNode auxMin = arbol;
